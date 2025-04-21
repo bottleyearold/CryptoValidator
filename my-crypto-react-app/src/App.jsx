@@ -1,16 +1,17 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import CryptoPrices from './CryptoPrices';
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import CryptoPrices from './CryptoPrices';
+import CoinDetails from './CoinDetails';
 
 function App() {
   return (
-    <div className="App">
-      <CryptoPrices />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<CryptoPrices />} />
+        <Route path="/coin/:id" element={<CoinDetails />} />
+      </Routes>
+    </Router>
   );
 }
 
-export default App
+export default App;

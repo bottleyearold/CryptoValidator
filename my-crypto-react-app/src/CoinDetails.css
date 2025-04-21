@@ -1,0 +1,11 @@
+.coin-container {
+    padding:40px;
+    margin-left: 50px;
+    background-color: #fefefe;
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  }
+  .coin-img {
+    margin-bottom: 20px;
+  }
+  
