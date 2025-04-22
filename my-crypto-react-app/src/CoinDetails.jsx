@@ -59,7 +59,7 @@ function CoinDetails() {
 
   console.log("Coin Debug:", coin);
   return (
-    <div className="coin-container max-w-2xl mx-auto">
+    <div className="coin-container w-full max-w-7xl mx-auto px-4">
       <h1 className="text-3xl font-bold mb-4">
         {coin.name} ({coin.symbol?.toUpperCase()})
       </h1>
@@ -158,8 +158,7 @@ function CoinDetails() {
             )}
         </p>
         )}
-
-        <div>
+        <div className="mt-10 border-t pt-6">
             <PriceChart coinId={id} />
         </div>
 
