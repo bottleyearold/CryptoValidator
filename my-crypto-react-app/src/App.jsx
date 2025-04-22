@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import CryptoPrices from './CryptoPrices';
 import CoinDetails from './CoinDetails';
 
+
 function App() {
   return (
     <Router>

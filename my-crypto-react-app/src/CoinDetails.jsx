@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './CoinDetails.css';
 import axios from 'axios';
+import PriceChart from './PriceChart';
 
 function CoinDetails() {
   const { id } = useParams();
@@ -157,6 +158,10 @@ function CoinDetails() {
             )}
         </p>
         )}
+
+        <div>
+            <PriceChart coinId={id} />
+        </div>
 
 
     </div>
