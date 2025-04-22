@@ -22,14 +22,48 @@ function CoinDetails() {
 
   if (!coin) return <p className="p-4">Loading coin details...</p>;
 
+  const marketData = coin.market_data;
+  const description = coin.description?.en || '';
+
+  // Compute Liquidity Ratio
+  const liquidityRatio = marketData
+    ? marketData.total_volume.usd / marketData.market_cap.usd
+    : null;
+
   return (
     <div className="coin-container max-w-2xl mx-auto">
-      <h1 className="text-3xl font-bold mb-4">{coin.name} ({coin.symbol.toUpperCase()})</h1>
-      <img src={coin.image.large} alt={coin.name} className="coin-img w-20 h-20" />
-      <p><strong>Current Price:</strong> ${coin.market_data.current_price.usd.toLocaleString()}</p>
-      <p><strong>Market Cap:</strong> ${coin.market_data.market_cap.usd.toLocaleString()}</p>
-      <p><strong>Total Volume:</strong> ${coin.market_data.total_volume.usd.toLocaleString()}</p>
-      <p className="mt-4 text-sm text-gray-700">{coin.description.en.split('. ')[0]}.</p>
+      <h1 className="text-3xl font-bold mb-4">
+        {coin.name} ({coin.symbol?.toUpperCase()})
+      </h1>
+
+      {coin.image?.large && (
+        <img src={coin.image.large} alt={coin.name} className="coin-img w-20 h-20" />
+      )}
+
+      {marketData && (
+        <>
+          <p><strong>Current Price:</strong> ${marketData.current_price.usd.toLocaleString()}</p>
+          <p><strong>Market Cap:</strong> ${marketData.market_cap.usd.toLocaleString()}</p>
+          <p><strong>Total Volume:</strong> ${marketData.total_volume.usd.toLocaleString()}</p>
+
+          <p>
+            <strong>Liquidity Ratio:</strong> {liquidityRatio.toFixed(4)}{' '}
+            {liquidityRatio < 0.01 && (
+              <span className="text-red-600 ml-2 font-semibold">⚠️ Very Low Liquidity</span>
+            )}
+            {liquidityRatio >= 0.01 && liquidityRatio < 0.05 && (
+              <span className="text-yellow-600 ml-2 font-semibold">⚠️ Medium Liquidity</span>
+            )}
+            {liquidityRatio >= 0.05 && (
+              <span className="text-green-600 ml-2 font-semibold">✅ Healthy Liquidity</span>
+            )}
+          </p>
+        </>
+      )}
+
+      {description && (
+        <p className="mt-4 text-sm text-gray-700">{description.split('. ')[0]}.</p>
+      )}
     </div>
   );
 }
