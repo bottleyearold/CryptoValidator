@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-
+//Looks good currently
 function CryptoPrices() {
   const [coins, setCoins] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
