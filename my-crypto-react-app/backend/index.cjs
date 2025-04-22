@@ -4,7 +4,24 @@ const pdfParse = require('pdf-parse');
 const cors = require('cors');
 require('dotenv').config();
 
-console.log("\uD83D\uDD10 Loaded API Key:", process.env.OPENROUTER_API_KEY ? "✅ Present" : "❌ Missing");
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://your-frontend-domain.com',
+];
+
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: ['POST'],
+};
+
+app.use(cors(corsOptions));
+
 
 const app = express();
 app.use(express.json());
