@@ -233,10 +233,7 @@ function CoinDetails() {
         <div className="mt-10 border-t pt-6">
             <PriceChart coinId={id} />
         </div>
-      <div className="mt-10 border-t pt-6">
-        <h2 className="text-xl font-bold mb-2">🤖 LLM Analysis of Whitepaper</h2>
-        <WhitepaperLLM coin={coin} id={id} />
-      </div>
+        <WhitepaperLLM id={id} />
 
 
 
