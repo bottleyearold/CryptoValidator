@@ -3,6 +3,7 @@ const axios = require('axios');
 const pdfParse = require('pdf-parse');
 const cors = require('cors');
 require('dotenv').config();
+const app = express();
 
 const allowedOrigins = [
   'http://localhost:5173',
@@ -23,7 +24,6 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 
-const app = express();
 app.use(express.json());
 app.use(cors());
 
